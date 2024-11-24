@@ -11,14 +11,7 @@ CARD_CENTER = (36, 48)
 CARD_BACK_SIZE = (72, 96)
 CARD_BACK_CENTER = (36, 48)
 
-background_color = (34,139,34)
-grey = (220,220,220)
-black = (0,0,0)
-green = (0, 200, 0)
-red = (255,0,0)
-light_slat = (119,136,153)
-dark_slat = (47, 79, 79)
-dark_red = (255, 0, 0)
+
 
 def get_font(size):
  return pygame.font.Font("asset/Grand9KPixel.ttf", size)
@@ -27,12 +20,14 @@ class Deck:
     def __init__(self):
         self.cards = []
         self.build()
-
+     
+    #nilalagay sa self.card na list
     def build(self):
         for value in RANKS:
             for suit in SUITS:
                 self.cards.append((value, suit))
-  
+        print(self.cards)
+     
     def shuffle(self):
         random.shuffle(self.cards)
         
