@@ -52,7 +52,7 @@ class Hand(Deck):
 
         for card in non_aces:
             if card in 'JQK':
-                self.value += 10
+                self.value += 0
             else:
                 self.value += int(card)
 
