@@ -16,7 +16,7 @@ class Deck:
         self.cards = []
         self.build()
         self.shuffle()
-        
+    
     #Building the deck
     def build(self):
         for value in RANKS:
@@ -71,10 +71,10 @@ class Laro:
     
     def get_current_card(self):
         return self.current_card
-    
+    #kinukuha ang score after ng laro
     def get_score(self):
         return self.score
-    #niloload ang image based sa index
+    #niloload ang image based current_card
     def load_card_image(self,card):
      if card is None:
         return None

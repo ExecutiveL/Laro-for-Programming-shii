@@ -37,7 +37,7 @@ images = {
 #sounds:
 pygame.mixer.init()
 pygame.mixer.music.load("asset/background.mp3")
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play(-1)
 
 
@@ -52,8 +52,8 @@ def title_screen():
         #mouse position
         mouse_position = pygame.mouse.get_pos()
         #Title size text isvisible
-        title_TEXT = get_font(50).render("Card game", True, "#b68f40")
-        title_RECT = title_TEXT.get_rect(center=(150, 70))
+        title_TEXT = get_font(50).render("High and Low", True, "#b68f40")
+        title_RECT = title_TEXT.get_rect(center=(170, 70))
         screen.blit(title_TEXT, title_RECT)
         #play image position text size  and colorr
         play = pygame.image.load(images["play_rectangle"])

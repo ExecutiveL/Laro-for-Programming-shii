@@ -23,17 +23,20 @@ class Button():
         self.rect = self.image.get_rect(center=(self.x_position, self.y_position))
         self.text_rect = self.text.get_rect(center=(self.x_position, self.y_position))
         
-        
+    #ginagawa ang button and text at dinidisplay sa surface
     def update(self, screen):
         if self.image is not None:
             screen.blit(self.image, self.rect)
         screen.blit(self.text, self.text_rect)
-
+        
+    #hinahanap kung saan nakalagay yung mouse
     def checkForInput(self, position):
-        if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+        
+         if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
             return True
-        return False
-
+         return False
+    
+    #palitan ng color sa button and text
     def changeColor(self, position):
         if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
             self.text = self.font.render(self.text_input, True, self.hovering_color)
@@ -41,4 +44,3 @@ class Button():
             self.text = self.font.render(self.text_input, True, self.base_color)
             
 
-        
