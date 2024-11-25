@@ -1,8 +1,7 @@
 import pygame
 from pygame import mixer
 from utilities import Button
-import main
-
+from Game import main
 
 # Initialize pygame
 pygame.init()
@@ -33,6 +32,7 @@ images = {
     "background" : "asset/background.png",
     "play_rectangle" : "asset/Play.png",
     "Quit rectangle" : "asset/Quit.png",
+   
 }
 #sounds:
 pygame.mixer.init()
@@ -74,7 +74,7 @@ def title_screen():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button.checkForInput(mouse_position):
                     pygame.mixer.music.stop()
-                    main.run()
+                    main()
                     pygame.mixer.music.play(-1)
                     
                     
