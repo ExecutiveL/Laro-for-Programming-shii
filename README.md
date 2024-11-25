@@ -2,5 +2,8 @@
 MENU
 Card functionalities
 ASSETS
-## mga gagawen pa:
 Rendering of cards
+## mga gagawen pa:
+PAUSE IF TALO
+AND PLAY AGAIN
+
