@@ -32,7 +32,7 @@ def Credit_screen():
         mouse_position = pygame.mouse.get_pos()
         
         screen.fill((59,92,29))
-        title_TEXT = get_font(40).render("This Game Is Made By:", True, "#b68f40")
+        title_TEXT = get_font(40).render("This Game Is Made By: Group 8", True, "#b68f40")
         title_RECT = title_TEXT.get_rect(center=(380, 70))
         screen.blit(title_TEXT, title_RECT)
         name_1 = get_font(20).render("Arellano, Marochelle", True, "#b68f40")
