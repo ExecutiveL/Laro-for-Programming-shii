@@ -39,7 +39,7 @@ class Laro:
         self.deck = Deck()
         self.current_card = None
         self.next_card = None
-        self.score = 0
+        self.money = 500
         
         
     def start_game(self):
@@ -57,7 +57,7 @@ class Laro:
 
         # Checking kung tama ang guess ng user
         if (guess == "Higher" and next_rank > Current_rank) or (guess == "Lower" and next_rank < Current_rank):
-            self.score += 1
+            self.money += 0
             result = True
         else:
             result = False
@@ -72,10 +72,13 @@ class Laro:
     def get_current_card(self):
         return self.current_card
     #kinukuha ang score after ng laro
-    def get_score(self):
-        return self.score
+    def get_money(self):
+        return self.money
+    #niloload ang image based current_card
+   
     #niloload ang image based current_card
     def load_card_image(self,card):
      if card is None:
         return None
      return pygame.image.load(f"asset/{card[0]}{card[1]}.png")
+ 

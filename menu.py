@@ -61,9 +61,11 @@ def title_screen():
         #Exit image position text size and color
         Exit = pygame.image.load(images["Quit rectangle"])
         Exit_button = Button(Exit,position=(150,300),text_input="Exit",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
-        
+        #Credit image position text size and color
+        credits = pygame.image.load(images["play_rectangle"])
+        credits_button = Button(credits,position=(150,400),text_input="Credits",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
         #Event handling
-        for button in [play_button,Exit_button]:
+        for button in [play_button,Exit_button,credits_button]:
             button.changeColor(mouse_position)
             button.update(screen)
         #Exit event
@@ -83,7 +85,14 @@ def title_screen():
                 if Exit_button.checkForInput(mouse_position):
                     pygame.quit()
                     quit()
-        
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if credits_button.checkForInput(mouse_position):
+                    pygame.mixer.music.stop()
+                    from Credits import Credit_screen
+                    Credit_screen()
+                    pygame.mixer.music.play(-1)
+                    
         clock.tick(60)
         pygame.display.flip()
 title_screen()    
