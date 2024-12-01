@@ -2,6 +2,7 @@ import pygame
 from pygame import mixer
 from utilities import Button
 from Game import main
+from Tutorial import tutorial
 
 # Initialize pygame
 pygame.init()
@@ -75,8 +76,7 @@ def title_screen():
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button.checkForInput(mouse_position):
-                    pygame.mixer.music.stop()
-                    main()
+                    tutorial()
                     pygame.mixer.music.play(-1)
                     
                     
@@ -95,4 +95,4 @@ def title_screen():
                     
         clock.tick(60)
         pygame.display.flip()
-title_screen()    
+title_screen()

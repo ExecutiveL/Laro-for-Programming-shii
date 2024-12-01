@@ -31,7 +31,6 @@ class Button():
         
     #hinahanap kung saan nakalagay yung mouse
     def checkForInput(self, position):
-        
          if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
             return True
          return False
@@ -55,15 +54,6 @@ class ImageButton():
         self.clicked = False
         
     def draw(self,surface):
-        pos = pygame.mouse.get_pos()
-        
-        if self.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                self.clicked = True
-                print("clicked")
-            if pygame.mouse.get_pressed()[0] == 0:
-                self.clicked = True
-                
         surface.blit(self.image, (self.rect.x,self.rect.y))
     
     def checkForInput(self, position):

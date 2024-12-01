@@ -21,7 +21,35 @@ screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     
 def get_font(size):
     return pygame.font.Font("asset/Grand9KPixel.ttf", size)
+def win():
+    a = True
+    while a:
+     win = get_font(40)
+     win_text = win.render("Your Guess is Correct", True, BLACK)
+     screen.blit(win_text, (200,200))
+     pygame.display.flip()
 
+     for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+         if event.type == pygame.MOUSEBUTTONDOWN:
+             a = False
+def lose():
+    a = True
+    while a:
+        lose = get_font(40)
+        lose_text = lose.render("Your Guess is Wrong", True, BLACK)
+        screen.blit(lose_text, (200,200))
+        pygame.display.flip()
+        
+        for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+         if event.type == pygame.MOUSEBUTTONDOWN:
+             a = False
+    
 def get_bet_amount(screen, current_money):
     
     font = get_font(32)
@@ -102,8 +130,42 @@ def restart_or_exit():
             pygame.display.flip()
             clock.tick(60)
 
+def restart_or_exit_1():
+    while True:
+        mouse_position = pygame.mouse.get_pos()
+        screen.fill(WHITE)
+        
+        you_lose_text = get_font(80).render("You Win",True, BLACK)
+        you_lose_text_rect = you_lose_text.get_rect(center=(380, 100))
+        screen.blit(you_lose_text,you_lose_text_rect)
+        
+        restart = pygame.image.load("asset/Play.png")
+        restart_button = Button(restart,position=(380,300),text_input="Play Again",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
+        
+        menus = pygame.image.load("asset/Play.png")
+        menu_button = Button(menus,position=(380,500),text_input="Main Menu",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
+        
+        for button in [restart_button,menu_button]:
+                button.changeColor(mouse_position)
+                button.update(screen)
+        
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if restart_button.checkForInput(mouse_position):
+                        main()
+                if menu_button.checkForInput(mouse_position):
+                    import menu
+                    menu.title_screen()
+                    
+            pygame.display.flip()
+            clock.tick(60)
 def main():
-    font = get_font(32)
+    
     pygame.display.set_caption('Higher or Lower')
 
     game = Laro()
@@ -117,6 +179,7 @@ def main():
 
     bet_amount = 0
     while True:
+        
         # background image
         Background = pygame.image.load("asset/game_background.png")
         screen.blit(Background,(0,0))
@@ -128,7 +191,7 @@ def main():
         Higher_button = Button(higher,position=(600,500),text_input="Higher",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
         lower = pygame.image.load("asset/Play.png")
         lower_button = Button(lower,position=(200,500),text_input="Lower",font=get_font(30),base_color=BLACK,hovering_color=WHITE)
-
+        
         chips = pygame.image.load("asset/chips.png").convert_alpha()
         chips_button = ImageButton(30,250,chips,1)
         chips_button.draw(screen)
@@ -147,20 +210,20 @@ def main():
                     if bet_amount > 0:
                         result = game.round_start("Higher")
                         if result:
-                            print("tama")
+                            win()
                             game.money += bet_amount
                         else:
-                            print("mali")
+                            lose()
                             game.money -= bet_amount
                         bet_amount = 0
                 elif lower_button.checkForInput(mouse_position):
                     if bet_amount > 0:
                         result = game.round_start("Lower")
                         if result:
-                            print("tama")
+                            win()
                             game.money += bet_amount
                         else:
-                            print("mali")
+                            lose()
                             game.money -= bet_amount
                         bet_amount = 0
                 elif chips_button.checkForInput(mouse_position):
@@ -168,10 +231,11 @@ def main():
                         new_bet = get_bet_amount(screen,game.money)
                         if 0 < new_bet <= game.money:
                             bet_amount = new_bet
-                            print(f"Bet amount: {bet_amount}")
                 if game.money == 0:
                     restart_or_exit()
-                    
+                if game.money == 1000000:
+                    restart_or_exit_1()
+                
                     
                     
         #current card
